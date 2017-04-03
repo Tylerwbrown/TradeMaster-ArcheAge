@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  duration: 
+  labor_cost: 
+  component_cost: 
+
+two:
+  name: MyString
+  duration: 
+  labor_cost: 
+  component_cost: 

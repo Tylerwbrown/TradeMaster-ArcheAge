@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Trade Routes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trade_routes.each do |trade_route| %>
+      <tr>
+        <td><%= trade_route.name %></td>
+        <td><%= link_to 'Show', trade_route %></td>
+        <td><%= link_to 'Edit', edit_trade_route_path(trade_route) %></td>
+        <td><%= link_to 'Destroy', trade_route, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trade Route', new_trade_route_path %>

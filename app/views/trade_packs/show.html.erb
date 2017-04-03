@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @trade_pack.name %>
+</p>
+
+<p>
+  <strong>Labor cost:</strong>
+  <%= @trade_pack.labor_cost %>
+</p>
+
+<p>
+  <strong>Component cost:</strong>
+  <%= @trade_pack.component_cost %>
+</p>
+
+<%= link_to 'Edit', edit_trade_pack_path(@trade_pack) %> |
+<%= link_to 'Back', trade_packs_path %>

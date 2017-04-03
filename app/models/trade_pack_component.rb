@@ -1,0 +1,2 @@
+class TradePackComponent < ApplicationRecord
+end

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Trade Packs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Duration</th>
+      <th>Labor cost</th>
+      <th>Component cost</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trade_packs.each do |trade_pack| %>
+      <tr>
+        <td><%= trade_pack.name %></td>
+        <td><%= trade_pack.duration %></td>
+        <td><%= trade_pack.labor_cost %></td>
+        <td><%= trade_pack.component_cost %></td>
+        <td><%= link_to 'Show', trade_pack %></td>
+        <td><%= link_to 'Edit', edit_trade_pack_path(trade_pack) %></td>
+        <td><%= link_to 'Destroy', trade_pack, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trade Pack', new_trade_pack_path %>
