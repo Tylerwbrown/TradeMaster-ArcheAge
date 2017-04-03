@@ -10,6 +10,9 @@ class TradePackComponentsController < ApplicationController
   # GET /trade_pack_components/1
   # GET /trade_pack_components/1.json
   def show
+    respond_to do |format|
+      format.js { render layout: false }
+    end
   end
 
   # GET /trade_pack_components/new
@@ -23,17 +26,12 @@ class TradePackComponentsController < ApplicationController
 
   # POST /trade_pack_components
   # POST /trade_pack_components.json
-  def create
-    @trade_pack_component = TradePackComponent.new(trade_pack_component_params)
 
+  def create
+    @component = TradePackComponent.new(trade_pack_component_params)
     respond_to do |format|
-      if @trade_pack_component.save
-        format.html { redirect_to @trade_pack_component, notice: 'Trade pack component was successfully created.' }
-        format.json { render :show, status: :created, location: @trade_pack_component }
-      else
-        format.html { render :new }
-        format.json { render json: @trade_pack_component.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @component, notice: 'Component was successfully created.' }
+      # format.js { render layout: false } # this is apparently impossible
     end
   end
 
@@ -42,7 +40,7 @@ class TradePackComponentsController < ApplicationController
   def update
     respond_to do |format|
       if @trade_pack_component.update(trade_pack_component_params)
-        format.html { redirect_to @trade_pack_component, notice: 'Trade pack component was successfully updated.' }
+        format.html { redirect_to @trade_pack_component, notice: 'Component was successfully updated.' }
         format.json { render :show, status: :ok, location: @trade_pack_component }
       else
         format.html { render :edit }
@@ -56,7 +54,7 @@ class TradePackComponentsController < ApplicationController
   def destroy
     @trade_pack_component.destroy
     respond_to do |format|
-      format.html { redirect_to trade_pack_components_url, notice: 'Trade pack component was successfully destroyed.' }
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
   end
@@ -69,6 +67,6 @@ class TradePackComponentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trade_pack_component_params
-      params.fetch(:trade_pack_component, {})
+      params.require(:trade_pack_component).permit(:name, :cost)
     end
 end

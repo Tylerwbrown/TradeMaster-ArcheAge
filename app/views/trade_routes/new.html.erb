@@ -1,5 +1,6 @@
-<h1>New Trade Route</h1>
-
-<%= render 'form', trade_route: @trade_route %>
-
-<%= link_to 'Back', trade_routes_path %>
+<h1 class="text-center">New Trade Route</h1>
+<%= simple_form_for @trade_route do |f| %>
+  <%= f.input :from %>
+  <%= f.input :to %>
+  <%= f.input :duration %>
+<% end %>

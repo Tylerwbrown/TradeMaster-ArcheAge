@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403023308) do
+ActiveRecord::Schema.define(version: 20170403031306) do
 
   create_table "trade_pack_components", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20170403023308) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "duration"
+    t.string   "from"
+    t.string   "to"
   end
 
   create_table "trade_runs", force: :cascade do |t|

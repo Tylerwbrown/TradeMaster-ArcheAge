@@ -1,0 +1,6 @@
+<h1 class="text-center">New Trade Pack Component</h1>
+<%= simple_form_for trade_pack_component, remote: true do |f| %>
+  <%= f.input :name %>
+  <%= f.input :cost %>
+  <%= f.submit 'Create Trade Pack Component', class: 'btn btn-success btn-block', remote: true %>
+<% end %>

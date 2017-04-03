@@ -1,9 +1,8 @@
-<div class="col-sm-12 col-md-6 col-lg-4">
-  <%= link_to 'Define a Trade Pack Component', new_trade_pack_component_path, class: 'btn btn-primary btn-block' %>
+<div class="col-sm-12">
+  <%= link_to 'Test', new_trade_pack_component_path, remote: true %>
+  <%#= link_to 'Define a Trade Pack Component', new_trade_pack_component_path, class: 'btn btn-primary btn-block' %>
+  <%= link_to 'New Trade Pack', new_trade_pack_path, class: 'btn btn-primary btn-lg' %>
+  <%= link_to 'New Trade Route', new_trade_route_path, class: 'btn btn-primary btn-lg float-right' %>
   <br /><br />
-  <%= link_to 'Define a Trade Pack', new_trade_pack_path, class: 'btn btn-primary btn-block' %>
-  <br /><br />
-  <%= link_to 'Define a Trade Route', new_trade_route_path, class: 'btn btn-primary btn-block' %>
-  <br /><br />
-  <%= link_to 'Create a Trade Run', new_trade_run_path, class: 'btn btn-success btn-block' %>
+  <%= link_to 'Create a Trade Run', new_trade_run_path, class: 'btn btn-success btn-lg btn-block' %>
 </div>

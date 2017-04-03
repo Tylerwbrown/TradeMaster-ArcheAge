@@ -6,21 +6,22 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <%= link_to 'Home', root_path, class: nav_class(root_path) %>
-      <%= link_to 'Trade Routes', trade_routes_path, class: nav_class(trade_routes_path) %>
-      <%= link_to 'Trade Runs', trade_runs_path, class: nav_class(trade_runs_path) %>
       <li class="dropdown">
-        <a href="#" class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Define <span class="caret"></span></a>
+        <a href="#" class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Create <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">One more separated link</a></li>
+          <%= link_to 'Pack', new_trade_pack_path, class: nav_class(new_trade_pack_path) %>
+          <%= link_to 'Route', new_trade_route_path, class: nav_class(new_trade_route_path) %>
+          <%= link_to 'Runs', trade_runs_path, class: nav_class(trade_runs_path) %>
         </ul>
       </li>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a>
+      <li class="dropdown">
+        <a href="#" class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <%= link_to 'Packs', trade_packs_path, class: nav_class(trade_packs_path) %>
+          <%= link_to 'Routes', trade_routes_path, class: nav_class(trade_routes_path) %>
+          <%= link_to 'Runs', trade_runs_path, class: nav_class(trade_runs_path) %>
+        </ul>
+      </li>
     </div>
   </div>
 </nav>
