@@ -1,11 +1,12 @@
 <%= render layout: 'layouts/modal', locals:
                                           { modal_id: '1',
                                             btn_class: 'btn btn-success btn-block btn-lg',
-                                            title: 'How many items are in your trade pack?',
+                                            title: 'Required Info',
                                             button: 'New Trade Pack',
                                             close_button: nil } do %>
-  <%= simple_form_for :components, url: new_trade_pack_path do |f| %>
-    <%= f.input :count, label: false %>
+  <%= simple_form_for :info, url: new_trade_pack_path do |f| %>
+    <%= f.input :component_count, label: 'How many items are in your trade pack?' %>
+    <%= f.input :continent, label: 'What continent is your trade pack in?', as: :select, collection: Region.continent_list, include_blank: false %>
     <%= f.submit :Start, class: 'btn-block btn btn-success' %>
   <% end %>
 <% end %>

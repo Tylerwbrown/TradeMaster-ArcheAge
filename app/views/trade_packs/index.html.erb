@@ -6,10 +6,7 @@
   <div class="text-center">
     <%= link_to trade_pack.name, trade_pack, class: 'btn btn-primary btn-lg' %>
     <br/>
-    <span class="badge badge-warning">
-      <%= trade_pack.component_cost[:gold] %>.<%= trade_pack.component_cost[:silver] %> Gold
-    </span>
-    <span class="badge badge-info"><%= trade_pack.labor_cost %> Labor</span>
+    <%= render partial: 'badges', locals: { trade_pack: trade_pack } %>
   </div>
   <br /><br/>
 <% end %>

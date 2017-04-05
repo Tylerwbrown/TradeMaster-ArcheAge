@@ -1,0 +1,18 @@
+<div class="col-sm-12 col-md-6 <%= rows == 2 ? 'col-lg-8' : '' %>">
+  <%= f.simple_fields_for :component_ids do |i| %>
+    <% if rows == 2 %>
+      <div class="row">
+        <% row_size.times do |t| %>
+          <div class="col-lg-6"><%= i.input t, label: "Component #{t+1}", collection: Component.all.map { |c| [c.name, c.id] }, as: :select %></div>
+        <% end %>
+        <% (component_count - row_size).times do |t| %>
+            <div class="col-lg-6"><%= i.input t, label: "Component #{t+1+row_size}", collection: Component.all.map { |c| [c.name, c.id] }, as: :select %></div>
+        <% end %>
+      </div>
+    <% else %>
+      <% component_count.times do |t| %>
+        <%= i.input t, label: "Component #{t+1}", collection: Component.all.map { |c| [c.name, c.id] }, as: :select %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

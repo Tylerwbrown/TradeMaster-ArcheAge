@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170405083400) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "creation_cost"
-    t.string   "region"
+    t.integer   "region"
   end
 
   create_table "trade_routes", force: :cascade do |t|

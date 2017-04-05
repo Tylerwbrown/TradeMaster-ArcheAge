@@ -1,0 +1,10 @@
+<h1 class="text-center">Items</h1>
+
+<% components.each do |c| %>
+  <div class="text-center">
+    <%= link_to c.name, c, class: 'btn btn-primary btn-lg' %>
+    <br/>
+    <%= render partial: 'badges', locals: { component: c } %>
+  </div>
+  <br /><br/>
+<% end %>
