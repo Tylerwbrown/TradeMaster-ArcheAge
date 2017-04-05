@@ -1,0 +1,11 @@
+<%= simple_form_for :full_process, url: :new_full_process_path do |f| %>
+  <%= render layout: 'layouts/modal', locals:
+                                            { modal_id: '1',
+                                              btn_class: 'btn btn-primary btn-lg',
+                                              title: 'How many items are in your trade pack?',
+                                              button: 'Trade Master It',
+                                              close_button: nil } do %>
+    <%= f.input :items_count, label: false %>
+    <%= f.submit :Start, class: 'btn-block btn btn-success' %>
+  <% end %>
+<% end %>

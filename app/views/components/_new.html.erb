@@ -1,0 +1,13 @@
+<h1 class="text-center"><%= title %></h1>
+  <%= simple_form_for component do |f| %>
+    <div class="row">
+      <%= f.input :name, wrapper_class: 'col-sm-12 col-md-6' %>
+      <%= simple_fields_for :cost do |c| %>
+        <%= c.input :gold, wrapper_class: 'col-sm-4 col-md-2' %>
+        <%= c.input :silver, wrapper_class: 'col-sm-4 col-md-2' %>
+        <%= c.input :copper, wrapper_class: 'col-sm-4 col-md-2' %>
+      <% end %>
+    </div>
+    <br />
+    <%= f.submit button, class: 'btn btn-success btn-block' %>
+  <% end %>

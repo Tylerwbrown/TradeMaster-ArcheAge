@@ -9,52 +9,44 @@ class TradePacksController < ApplicationController
   end
 
   def new
+    puts params
     @trade_pack = TradePack.new
-  end
-
-  def edit
+    @component_count = params[:components][:count].to_i
+    @rows = @component_count > 3 ? 2 : 1
+    @row_size = (@component_count/@rows).to_i
   end
 
   def create
-    @trade_pack = TradePack.new(trade_pack_params)
+    @trade_pack = TradePack.new(name: params[:trade_pack][:name], labor_cost: params[:trade_pack][:labor_cost])
+    set_trade_pack_components
 
-    respond_to do |format|
-      if @trade_pack.save
-        format.html { redirect_to @trade_pack, notice: 'Trade pack was successfully created.' }
-        format.json { render :show, status: :created, location: @trade_pack }
-      else
-        format.html { render :new }
-        format.json { render json: @trade_pack.errors, status: :unprocessable_entity }
-      end
-    end
+    @trade_pack.save!
+    return redirect_to @trade_pack, notice: 'Trade pack was successfully created.' if @trade_pack.save
+    render :new
   end
 
   def update
-    respond_to do |format|
-      if @trade_pack.update(trade_pack_params)
-        format.html { redirect_to @trade_pack, notice: 'Trade pack was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trade_pack }
-      else
-        format.html { render :edit }
-        format.json { render json: @trade_pack.errors, status: :unprocessable_entity }
-      end
-    end
+    return redirect_to @trade_pack, notice: 'Trade pack was successfully updated.' if @trade_pack.update(trade_pack_params)
+    render :edit
   end
 
   def destroy
     @trade_pack.destroy
-    respond_to do |format|
-      format.html { redirect_to trade_packs_url, notice: 'Trade pack was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to trade_packs_url, notice: 'Trade pack was successfully destroyed.'
   end
 
   private
-    def set_trade_pack
-      @trade_pack = TradePack.find(params[:id])
+    def set_trade_pack_components
+      if @trade_pack.present? && component_ids = params[:trade_pack][:component_ids].values
+        components = component_ids.map { |id| Component.find(id) }
+        puts components.map(&:cost)
+        @trade_pack.components += components
+        puts @trade_pack.components.map(&:cost)
+
+      end
     end
 
-    def trade_pack_params
-      params.require(:trade_pack).permit(:name, :duration, :labor_cost, :component_cost)
+    def set_trade_pack
+      @trade_pack = TradePack.find(params[:id])
     end
 end

@@ -10,22 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403031306) do
+ActiveRecord::Schema.define(version: 20170405083400) do
 
-  create_table "trade_pack_components", force: :cascade do |t|
+  create_table "components", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
     t.integer  "cost"
   end
 
+  create_table "components_trade_packs", id: false, force: :cascade do |t|
+    t.integer "component_id",  null: false
+    t.integer "trade_pack_id", null: false
+    t.index ["component_id", "trade_pack_id"], name: "index_components_trade_packs_on_component_id_and_trade_pack_id"
+  end
+
   create_table "trade_packs", force: :cascade do |t|
     t.string   "name"
     t.integer  "labor_cost"
-    t.integer  "component_cost"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "creation_cost"
+    t.string   "region"
   end
 
   create_table "trade_routes", force: :cascade do |t|
