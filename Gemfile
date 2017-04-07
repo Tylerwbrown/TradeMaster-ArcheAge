@@ -8,7 +8,7 @@ end
 gem 'bootstrap'
 gem 'simple_form'
 gem 'activemodel-serializers-xml', git: 'https://github.com/rails/activemodel-serializers-xml' #for draper
-gem 'draper'
+gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 
 gem 'rails', '~> 5.0.2'
 gem 'sqlite3'

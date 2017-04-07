@@ -2,13 +2,7 @@ class ComponentsController < ApplicationController
   before_action :set_component, only: [:show, :edit, :update, :destroy]
 
   def index
-    @components = Component.all
-  end
-
-  def show
-    respond_to do |format|
-      format.js { render layout: false }
-    end
+    @components = Component.all.decorate
   end
 
   def new
@@ -17,34 +11,46 @@ class ComponentsController < ApplicationController
   end
 
   def create
-    puts
-    cost = (params[:cost][:gold].to_i * 10000) + (params[:cost][:silver].to_i * 100) + params[:cost][:copper].to_i
-    @component = Component.new(name: params[:component][:name], cost: cost)
-    redirect_to root_url, notice: 'Component was successfully created.' if @component.save
+    @component = Component.new(component_params)
+
+    if @component.save
+      flash[:success] = "You created #{@component.name}"
+    else
+      flash[:danger] = "Creation failed."
+    end
+    redirect_to root_url
   end
 
   def update
-    respond_to do |format|
-      if @component.update(component_params)
-        format.html { redirect_to @component, notice: 'Component was successfully updated.' }
-        format.json { render :show, status: :ok, location: @component }
-      else
-        format.html { render :edit }
-        format.json { render json: @component.errors, status: :unprocessable_entity }
-      end
+    if @component.update(component_params)
+      flash[:success] = "You successfully updated #{@component.name}"
+      redirect_to components_path
+    else
+      render :edit
     end
   end
 
   def destroy
     @component.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url }
-      format.json { head :no_content }
-    end
+    redirect_to root_url
   end
 
   private
     def set_component
       @component = Component.find(params[:id])
+    end
+
+    def set_cost
+      if cost = params[:cost]
+        gold = cost[:gold].to_i * 10000 if cost[:gold]
+        silver = cost[:silver].to_i * 100 if cost[:silver]
+        copper = cost[:copper].to_i if cost[:copper]
+        gold + silver + copper
+      end
+    end
+
+    def component_params
+      params[:component][:cost] = set_cost
+      params[:component].permit(:name, :cost)
     end
 end

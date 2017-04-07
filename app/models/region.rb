@@ -4,15 +4,17 @@ class Region
   end
 
   def self.list_for_form(region)
+    modifier = 0
     l = case region.to_s.downcase.to_sym
     when :all
       list
     when :nuia
       nuia_region_list
     when :haranya
+      modifier += nuia_region_list.count
       haranya_region_list
     end
-    l.map.with_index { |item, index| [item.to_s.gsub('_', ' ').titleize, index] }
+    l.map.with_index { |item, index| [item.to_s.titleize, index + modifier] }
   end
 
   def self.list

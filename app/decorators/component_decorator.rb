@@ -1,7 +1,7 @@
-class TradePackDecorator < Draper::Decorator
+class ComponentDecorator < Draper::Decorator
   delegate_all
 
   def cost
-    h.format_cost(super)
+    h.format_cost(read_attribute(:cost))
   end
 end

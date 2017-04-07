@@ -2,9 +2,13 @@
 
 <% components.each do |c| %>
   <div class="text-center">
-    <%= link_to c.name, c, class: 'btn btn-primary btn-lg' %>
+    <%= render partial: 'components/edit_modal', locals: { component: c } %>
+    <%#= link_to c.name, c, class: 'btn btn-primary btn-lg', remote: true %>
     <br/>
-    <%= render partial: 'badges', locals: { component: c } %>
+    <span class="badge badge-warning"><%= "#{c.cost[:gold]}.#{c.cost[:silver]} Gold" %></span>
   </div>
   <br /><br/>
 <% end %>
+
+<div id="trade-pack-components-list">
+</div>

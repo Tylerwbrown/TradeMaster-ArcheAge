@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405083400) do
+ActiveRecord::Schema.define(version: 20170406053742) do
+
+  create_table "component_counts", force: :cascade do |t|
+    t.integer  "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "components", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170405083400) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "creation_cost"
-    t.integer   "region"
+    t.integer  "region"
   end
 
   create_table "trade_routes", force: :cascade do |t|

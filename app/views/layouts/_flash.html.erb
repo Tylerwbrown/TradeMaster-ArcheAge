@@ -1,0 +1,10 @@
+<div class="row justify-content-sm-center">
+  <div class="col-sm-8 col-lg-5 text-center">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, class: "alert alert-#{name.to_s} alert-dismissible fade show" do %>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <%= msg.html_safe %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

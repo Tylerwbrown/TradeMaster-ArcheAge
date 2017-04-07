@@ -6,7 +6,7 @@
     <%= f.input :labor_cost, label: 'Cost <span class="badge badge-info">Labor</span>'.html_safe %>
     <%= f.input :region, label: "Region <span class='badge badge-danger'>#{@continent}</span>".html_safe, collection: @regions, include_blank: false %>
   </div>
-  <%= render partial: 'component_rows', locals: { rows: @rows, row_size: @row_size, component_count: @component_count, f: f } %>
+  <%= render partial: 'trade_packs/new/component_rows', locals: { rows: @rows, row_size: @row_size, component_count: @component_count, f: f } %>
 
   <br />
   <div class="col-sm-12"><%= f.submit 'Create Trade Pack', class: 'btn btn-success btn-block' %></div>

@@ -2,7 +2,7 @@ class TradePackDecorator < Draper::Decorator
   delegate_all
 
   def region
-    read_attribute(:region).to_s.gsub('_', ' ').titleize
+    read_attribute(:region).to_s.titleize
   end
 
   def cost
