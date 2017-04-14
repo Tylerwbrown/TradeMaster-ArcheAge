@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406053742) do
+ActiveRecord::Schema.define(version: 20170406053947) do
 
   create_table "component_counts", force: :cascade do |t|
     t.integer  "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.         "trade_pack"
   end
 
   create_table "components", force: :cascade do |t|

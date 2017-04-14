@@ -1,0 +1,8 @@
+<% trade_packs = @trade_packs.where(region: region) %>
+<% if trade_packs.present? %>
+  <div class="col-md-6 col-lg-4 text-center">
+    <h2><span class="badge badge-pill badge-default btn-block"><%= region.to_s.titleize %></span></h2>
+
+    <%= render partial: '/trade_pack', collection: trade_packs.map(&:decorate) %>
+  </div>
+<% end %>

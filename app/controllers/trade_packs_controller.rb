@@ -9,27 +9,19 @@ class TradePacksController < ApplicationController
   end
 
   def new
-    @trade_pack = TradePack.new
+    @trade_pack = TradePack.new.decorate
 
-    @component_count = params[:info][:component_count].to_i
-    @rows = @component_count > 3 ? 2 : 1
-    @row_size = (@component_count/@rows).to_i
-
-    @continent = params[:info][:continent]
-    @regions = Region.list_for_form(@continent)
+    @presenter = ::NewTradePackPresenter.new(@trade_pack, params[:info][:component_count].to_i, params[:info][:continent])
   end
 
   def create
-    @trade_pack = TradePack.new(name: pack[:name], labor_cost: pack[:labor_cost], region: pack[:region])
-    set_trade_pack_components if params[:trade_pack][:component_ids].present?
+    @trade_pack = TradePack.new(trade_pack_params)
+    # set_trade_pack_components if params[:trade_pack][:component_ids].present?
 
     if @trade_pack.save
-      flash[:success] = "You successfully created a Trade Pack!"
+      flash[:success] = "<h4 class='alert-heading'>Creation Success!</h4>You created a Trade Pack!"
     else
       flash[:danger] = "<h4 class='alert-heading'>Creation Failed</h4>#{@trade_pack.errors.to_a}"
-      @trade_pack.component_requirements.each do |cr|
-        flash[:danger] = cr.errors.to_a
-      end
     end
     redirect_to trade_packs_path
   end
@@ -56,9 +48,9 @@ class TradePacksController < ApplicationController
       @trade_pack = TradePack.find(params[:id]).decorate
     end
 
-    def pack
+    def trade_pack_params
       params[:trade_pack][:region] = params[:trade_pack][:region].to_i
-      params[:trade_pack]
+      params.require(:trade_pack).permit(:name, :labor_cost, :region, :component_ids)
     end
 
 end

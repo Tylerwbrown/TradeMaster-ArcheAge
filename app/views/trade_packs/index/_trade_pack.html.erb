@@ -1,4 +1,6 @@
-<%= link_to trade_pack.name, trade_pack, class: 'btn btn-primary btn-lg' %>
-<br/>
-<%= render partial: 'trade_packs/index/badges', locals: { trade_pack: trade_pack } %>
-<br /><br/>
+<div class="container">
+    <%= link_to trade_pack.name, trade_pack, class: 'btn btn-lg btn-primary' %>
+</div>
+
+<%= render partial: '/badges', object: trade_pack %>
+<br /><br />

@@ -1,3 +1,4 @@
 <%= @trade_pack.name %>
 <%= @trade_pack.labor_cost %>
 <%= @trade_pack.cost %>
+<%= @trade_pack.components.map { |c| c.name } %>

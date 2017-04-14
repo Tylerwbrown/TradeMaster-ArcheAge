@@ -1,13 +1,13 @@
 <h1 class="text-center">New Trade Pack</h1>
-<%= simple_form_for @trade_pack, html: { class: 'row' } do |f| %>
+<%= simple_form_for @trade_pack do |f| %>
 
-  <div class="col-sm-12 col-md-6 <%= @rows == 2 ? 'col-lg-4' : '' %>">
-    <%= f.input :name %>
-    <%= f.input :labor_cost, label: 'Cost <span class="badge badge-info">Labor</span>'.html_safe %>
-    <%= f.input :region, label: "Region <span class='badge badge-danger'>#{@continent}</span>".html_safe, collection: @regions, include_blank: false %>
+  <div class="row col-sm-12">
+    <%= f.input :name, wrapper_class: 'col-sm-4 col-md-5' %>
+    <%= f.input :labor_cost, label: labor_badge('Cost'), wrapper_class: 'col-sm-3 col-md-2' %>
+    <%= f.input :region, label: continent_badge('Region', @presenter.continent), collection: @presenter.regions, include_blank: false, wrapper_class: 'col-sm-5' %>
   </div>
-  <%= render partial: 'trade_packs/new/component_rows', locals: { rows: @rows, row_size: @row_size, component_count: @component_count, f: f } %>
+  <%= render partial: '/component_rows', locals: { f: f } %>
 
   <br />
-  <div class="col-sm-12"><%= f.submit 'Create Trade Pack', class: 'btn btn-success btn-block' %></div>
+  <%= f.submit 'Create Trade Pack', class: 'btn btn-success btn-block', wrapper_class: 'col-sm-12' %>
 <% end %>
