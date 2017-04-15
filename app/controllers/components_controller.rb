@@ -14,16 +14,16 @@ class ComponentsController < ApplicationController
     @component = Component.new(component_params)
 
     if @component.save
-      flash[:success] = "You created #{@component.name}"
+      flash[:success] = "<h4 class='alert-heading'>Creation Successful!</h4>You created #{@component.name}!"
     else
-      flash[:danger] = "Creation failed."
+      flash[:danger] = "<h4 class='alert-heading'>Creation Failed</h4>#{@component.errors.to_a}"
     end
     redirect_to root_url
   end
 
   def update
     if @component.update(component_params)
-      flash[:success] = "You successfully updated #{@component.name}"
+      flash[:success] = "<h4 class='alert-heading'>Update Successful!</h4>You've updated #{@component.name}!"
       redirect_to components_path
     else
       render :edit

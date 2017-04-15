@@ -1,0 +1,3 @@
+<%= render 'modals/modal', btn_class: 'btn btn-primary btn-lg', title: "#{local_assigns[:trade_pack].name}", button: local_assigns[:trade_pack].name  do %>
+  <%= render '/trade_packs/show', button: 'Submit', trade_pack: local_assigns[:trade_pack].decorate %>
+<% end %>

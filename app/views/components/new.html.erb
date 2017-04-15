@@ -1,4 +1,1 @@
-<%= render partial: 'new', locals: {
-                                    component: @component,
-                                    title: 'New Item',
-                                    button: 'Create Item',} %>
+<%= render 'new', component: @component.decorate, title: 'New Item', button: 'Create Item' %>

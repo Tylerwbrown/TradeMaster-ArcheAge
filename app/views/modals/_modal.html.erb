@@ -1,0 +1,28 @@
+<%# btn_class, button, title, close_button, and a block %>
+<% id = random_id %>
+<button type="button" class="btn <%= local_assigns[:btn_class] %>" data-toggle="modal" data-target="#<%= id %>">
+  <%= local_assigns[:button] %>
+</button>
+
+<div class="modal" id="<%= id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <% if local_assigns[:title].present? %>
+        <div class="modal-header", style="margin: 0 auto">
+          <h5 class="modal-title" id="exampleModalLabel"><%= local_assigns[:title] %></h5>
+        </div>
+      <% end %>
+
+      <div class="modal-body">
+        <%= yield %>
+      </div>
+
+      <% if local_assigns[:footer_button].present? %>
+        <div class="modal-footer">
+          <button class="btn btn-success btn-block" data-dissmiss="modal"><%= local_assigns[:footer_button] %></button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="text-center">
+  <h6><%= badge(:info, trade_pack.labor_cost.to_s + " Labor") %></h6>
+  <h1><%= cost_badges(trade_pack.cost) %></h1>
+</div>
+
+<div class="row">
+<% trade_pack.components_total.each do |total_component| %>
+  <div class="col-6">
+    <h5><%= badge(:default, total_component[:component].name) %></h3>
+    <div>Count: <%= total_component[:count] %></div>
+    <div><%= cost_badges(total_component[:cost], display: :dynamic) %></div>
+  </div>
+  <br />
+<% end %>
+</div>

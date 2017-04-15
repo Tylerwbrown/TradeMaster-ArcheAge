@@ -6,7 +6,17 @@ class TradePackDecorator < Draper::Decorator
   end
 
   def cost
-    h.format_cost(components.sum(&:cost))
+    components_total.sum { |c| c[:cost] }
   end
+
+  def components_total
+    items = components.map.with_index do |component, index|
+      count = component_counts[index].count.to_i
+      cost = component.cost.to_i * count
+      { component: component, cost: cost, count: count }
+    end
+    items
+  end
+
 
 end

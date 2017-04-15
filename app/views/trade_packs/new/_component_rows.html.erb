@@ -1,3 +1,12 @@
-<%= f.simple_fields_for :component_ids, html: { class: 'col-sm-12 row' }, defaults: { wrapper_class: @presenter.component_classes } do |i| %>
-  <%= @presenter.component_count.times.map { |r| (i.input r, label: "Component #{r+1}", collection: @presenter.components, as: :select) }.join.html_safe %>
+<% @presenter.component_count.times do |r| %>
+  <div class="col-sm-12 col-lg-6">
+    <div class="row">
+      <%= f.simple_fields_for :component_ids do |i| %>
+        <%= i.input r, label: "Component #{r+1}", collection: @presenter.components, as: :select, wrapper_class: 'col-9 col-sm-10' %>
+      <% end %>
+      <%= f.simple_fields_for :component_counts do |i| %>
+        <%= i.input r, label: 'Count', as: :integer, wrapper_class: 'col-3 col-sm-2' %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

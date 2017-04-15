@@ -1,13 +1,11 @@
-<h1 class="text-center"><%= title %></h1>
-  <%= simple_form_for component do |f| %>
+<h1 class="text-center"><%= local_assigns[:title] %></h1>
+  <%= simple_form_for local_assigns[:component] do |f| %>
     <div class="row">
       <%= f.input :name, wrapper_class: 'col-sm-12 col-md-6' %>
       <%= simple_fields_for :cost do |c| %>
-        <% [:gold, :silver, :copper].each do |k| %>
-          <%= c.input k, wrapper_class: 'col-sm-4 col-md-2', input_html: { value: (component.cost.present? ? component.cost[k] : '') } %>
-        <% end %>
+        <%= [:gold, :silver, :copper].map { |k| c.input k, wrapper_class: 'col-sm-4 col-md-2', input_html: { value: format_cost(local_assigns[:component].cost)[k] } }.join.html_safe %>
       <% end %>
     </div>
     <br />
-    <%= f.submit button, class: 'btn btn-success btn-block' %>
+    <%= f.submit local_assigns[:button], class: 'btn btn-success btn-block' %>
   <% end %>

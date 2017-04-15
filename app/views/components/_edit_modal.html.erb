@@ -1,8 +1,0 @@
-<%= render layout: 'shared/modal', locals:
-                                          { modal_id: component.id,
-                                            btn_class: 'btn btn-primary btn-lg',
-                                            title: "Edit #{component.name}",
-                                            button: component.name,
-                                            close_button: nil } do %>
-<%= render partial: 'new', locals: { button: 'Submit', component: component.decorate, title: nil } %>
-<% end %>

@@ -1,12 +1,14 @@
 <h1 class="text-center">New Trade Pack</h1>
 <%= simple_form_for @trade_pack do |f| %>
 
-  <div class="row col-sm-12">
+  <div class="row">
     <%= f.input :name, wrapper_class: 'col-sm-4 col-md-5' %>
-    <%= f.input :labor_cost, label: labor_badge('Cost'), wrapper_class: 'col-sm-3 col-md-2' %>
-    <%= f.input :region, label: continent_badge('Region', @presenter.continent), collection: @presenter.regions, include_blank: false, wrapper_class: 'col-sm-5' %>
+    <%= f.input :labor_cost, label: "Cost #{badge(:info, 'Labor')}".html_safe, wrapper_class: 'col-sm-3 col-md-2', input_html: { value: 25 } %>
+    <%= f.input :region, label: "Region #{badge(:default, @presenter.continent)}".html_safe, collection: @presenter.regions, include_blank: false, wrapper_class: 'col-sm-5' %>
   </div>
-  <%= render partial: '/component_rows', locals: { f: f } %>
+  <div class="row">
+    <%= render partial: '/component_rows', locals: { f: f } %>
+  </div>
 
   <br />
   <%= f.submit 'Create Trade Pack', class: 'btn btn-success btn-block', wrapper_class: 'col-sm-12' %>

@@ -5,21 +5,17 @@ class TradePacksController < ApplicationController
     @trade_packs = TradePack.all
   end
 
-  def show
-  end
-
   def new
     @trade_pack = TradePack.new.decorate
-
     @presenter = ::NewTradePackPresenter.new(@trade_pack, params[:info][:component_count].to_i, params[:info][:continent])
   end
 
   def create
     @trade_pack = TradePack.new(trade_pack_params)
-    # set_trade_pack_components if params[:trade_pack][:component_ids].present?
+    @trade_pack.component_counts = params[:trade_pack][:component_counts].map { |c| ComponentCount.create(count: c) }
 
     if @trade_pack.save
-      flash[:success] = "<h4 class='alert-heading'>Creation Success!</h4>You created a Trade Pack!"
+      flash[:success] = "<h4 class='alert-heading'>Creation Successful!</h4>You created a Trade Pack!"
     else
       flash[:danger] = "<h4 class='alert-heading'>Creation Failed</h4>#{@trade_pack.errors.to_a}"
     end
@@ -37,11 +33,10 @@ class TradePacksController < ApplicationController
   end
 
   private
-    def set_trade_pack_components
-      if @trade_pack.present? && component_ids = params[:trade_pack][:component_ids].values
-        components = component_ids.map { |id| Component.find(id) }
-        @trade_pack.components += components
-      end
+    def fix_params #TODO:// Find something better
+      params[:trade_pack][:component_ids] = params[:trade_pack][:component_ids].map(&:last).map(&:to_i) #TODO:// look into map! alternative
+      params[:trade_pack][:component_counts] = params[:trade_pack][:component_counts].map(&:last).map(&:to_i) #TODO:// look into map! alternative
+      params[:trade_pack][:region] = params[:trade_pack][:region].to_i
     end
 
     def set_trade_pack
@@ -49,8 +44,8 @@ class TradePacksController < ApplicationController
     end
 
     def trade_pack_params
-      params[:trade_pack][:region] = params[:trade_pack][:region].to_i
-      params.require(:trade_pack).permit(:name, :labor_cost, :region, :component_ids)
+      fix_params
+      params.require(:trade_pack).permit(:name, :labor_cost, :region, :component_ids=>[])
     end
 
 end

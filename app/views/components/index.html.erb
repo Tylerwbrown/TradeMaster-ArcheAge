@@ -1,1 +1,10 @@
-<%= render partial: 'index', locals: { components: @components } %>
+<h1 class="text-center">Items</h1>
+
+<% @components.each do |component| %>
+  <div class="text-center">
+    <%= render 'modals/edit_component', component: component %>
+    <br/>
+    <%= cost_badges(component.cost, display: :dynamic) %>
+  </div>
+  <br /><br/>
+<% end %>

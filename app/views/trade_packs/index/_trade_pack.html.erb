@@ -1,6 +1,6 @@
 <div class="container">
-    <%= link_to trade_pack.name, trade_pack, class: 'btn btn-lg btn-primary' %>
+    <%= render 'modals/show_trade_pack', trade_pack: trade_pack %>
 </div>
 
-<%= render partial: '/badges', object: trade_pack %>
+<%= cost_badges(trade_pack.cost, display: :gold) %>
 <br /><br />

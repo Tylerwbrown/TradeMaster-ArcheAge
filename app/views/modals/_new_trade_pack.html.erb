@@ -1,0 +1,7 @@
+<%= render '/modals/modal', btn_class: 'btn btn-success btn-block btn-lg', title: 'Required Info', button: 'New Trade Pack' do %>
+  <%= simple_form_for :info, url: new_trade_pack_path do |f| %>
+    <%= f.input :component_count, label: 'How many items are in your trade pack?' %>
+    <%= f.input :continent, label: 'What continent is your trade pack in?', as: :select, collection: Region.continent_list, include_blank: false %>
+    <%= f.submit :Start, class: 'btn-block btn btn-success' %>
+  <% end %>
+<% end %>

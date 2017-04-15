@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170406053947) do
     t.integer  "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.         "trade_pack"
+    t.integer "trade_pack_id", null: false
   end
 
   create_table "components", force: :cascade do |t|
@@ -29,7 +29,19 @@ ActiveRecord::Schema.define(version: 20170406053947) do
   create_table "components_trade_packs", id: false, force: :cascade do |t|
     t.integer "component_id",  null: false
     t.integer "trade_pack_id", null: false
-    t.index ["component_id", "trade_pack_id"], name: "index_components_trade_packs_on_component_id_and_trade_pack_id"
+    t.index ["component_id", "trade_pack_id"], name: "component_trade_pack_index"
+  end
+
+  create_table "trade_packs_trade_runs", id: false, force: :cascade do |t|
+    t.integer "trade_pack_id", null: false
+    t.integer "trade_run_id",  null: false
+    t.index ["trade_pack_id", "trade_run_id"], name: "trade_pack_run_index"
+  end
+
+  create_table "trade_routes_trade_runs", id: false, force: :cascade do |t|
+    t.integer "trade_route_id", null: false
+    t.integer "trade_run_id",  null: false
+    t.index ["trade_route_id", "trade_run_id"], name: "trade_route_run_index"
   end
 
   create_table "trade_packs", force: :cascade do |t|

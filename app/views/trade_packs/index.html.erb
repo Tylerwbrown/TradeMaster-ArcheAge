@@ -1,4 +1,4 @@
 <h1 class="text-center">Trade Packs</h1>
 <div class="row">
-  <%= render partial: "/region", collection: Region.list %>
+  <%= render partial: "/region", collection: Region.list, locals: { trade_packs: @trade_packs } %>
 </div>
