@@ -1,6 +1,6 @@
 <h1 class="text-center">New Trade Route</h1>
 <%= simple_form_for @trade_route do |f| %>
-  <%= f.input :from %>
-  <%= f.input :to %>
+  <%= f.input :from, collection: Region.list_for_form(:all), include_blank: false %>
+  <%= f.input :to, collection: Region.list_for_form(:all), include_blank: false %>
   <%= f.input :duration %>
 <% end %>
